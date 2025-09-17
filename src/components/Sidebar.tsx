@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'motion/react'
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
 import { usePathname } from 'next/navigation'
+import { activeLinkClasses, linkClasses } from '@/utils/customStyles'
 
 type Props = {
     open: boolean
@@ -25,9 +25,26 @@ export default function Sidebar({ open, onClose }: Props) {
                 <Link href="/" className="text-2xl font-bold bg-gradient-to-r bg-clip-text text-transparent from-amber-500 to-sky-500">Zetta Inc.</Link>
             </div>
             <nav className="mt-6 space-y-1">
-                <Link href="/" className={`block px-3 py-2 rounded bg-slate-700 hover:bg-gradient-to-r from-amber-500 to-sky-500 transition-all duration-300 ease-in-out ${pathname === '/' && 'bg-gradient-to-r from-amber-500 to-sky-500'} `}>Dashboard</Link>
-                <Link href="/posts" className={`block px-3 py-2 rounded bg-slate-700 hover:bg-gradient-to-r from-amber-500 to-sky-500 transition-all duration-300 ease-in-out ${pathname === '/posts' && 'bg-gradient-to-r from-amber-500 to-sky-500'}`}>Posts</Link>
-                <Link href="/users" className={`block px-3 py-2 rounded bg-slate-700 hover:bg-gradient-to-r from-amber-500 to-sky-500 transition-all duration-300 ease-in-out ${pathname === '/users' && 'bg-gradient-to-r from-amber-500 to-sky-500'}`}>Users</Link>
+                <Link
+                    href="/"
+                    className={`${linkClasses} ${pathname === '/' ? activeLinkClasses : 'bg-slate-700'}`}
+                >
+                    <span className="relative z-10">Dashboard</span>
+                </Link>
+
+                <Link
+                    href="/posts"
+                    className={`${linkClasses} ${pathname === '/posts' ? activeLinkClasses : 'bg-slate-700'}`}
+                >
+                    <span className="relative z-10">Posts</span>
+                </Link>
+
+                <Link
+                    href="/users"
+                    className={`${linkClasses} ${pathname === '/users' ? activeLinkClasses : 'bg-slate-700'}`}
+                >
+                    <span className="relative z-10">Users</span>
+                </Link>
             </nav>
 
             <button
