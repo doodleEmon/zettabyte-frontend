@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
 import { usePathname } from 'next/navigation'
 import { activeLinkClasses, linkClasses } from '@/utils/customStyles'
