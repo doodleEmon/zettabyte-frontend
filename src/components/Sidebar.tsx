@@ -10,7 +10,7 @@ import { MdDashboard } from 'react-icons/md'
 import { FaSignsPost, FaUsers } from 'react-icons/fa6'
 
 export default function Sidebar() {
-    const [open, setOpen] = useState<Boolean>(true);
+    const [open, setOpen] = useState<boolean>(true);
     const pathname = usePathname();
     const { id } = useParams();
 

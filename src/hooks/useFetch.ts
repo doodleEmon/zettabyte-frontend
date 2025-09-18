@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 
-export default function useFetch<T = any>(url: string | null) {
+export default function useFetch<T = unknown>(url: string | null) {
   const [data, setData] = useState<T | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -16,8 +16,9 @@ export default function useFetch<T = any>(url: string | null) {
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
       const json = await res.json()
       setData(json)
-    } catch (err: any) {
-      setError(err.message || 'Unknown error')
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error'
+      setError(errorMessage)
     } finally {
       setLoading(false)
     }

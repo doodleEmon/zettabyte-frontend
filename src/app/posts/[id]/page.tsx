@@ -6,11 +6,12 @@ import React from 'react'
 import { BiChevronLeft } from 'react-icons/bi';
 import { motion } from 'framer-motion'
 import LoadingSpinner from '@/components/LoadingSpinner';
+import { Post } from '@/utils/types';
 
 export default function SinglePost() {
   const { id } = useParams();
   const endpoint = `https://jsonplaceholder.typicode.com/posts/${id}`;
-  const { data: post, loading } = useFetch<any>(endpoint);
+  const { data: post, loading } = useFetch<Post>(endpoint);
   const router = useRouter();
 
   return (

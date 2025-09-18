@@ -6,12 +6,12 @@ import LoadingSpinner from '../../components/LoadingSpinner'
 import Modal from '@/components/Modal'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
+import { User } from '@/utils/types'
 
 export default function Users() {
   const endpoint = `https://jsonplaceholder.typicode.com/users`;
-  const { data: users, loading, error } = useFetch<any[]>(endpoint)
-
-  const [selectedUser, setSelectedUser] = useState<any | null>(null)
+  const { data: users, loading, error } = useFetch<User[]>(endpoint);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
   return (
     <main className="p-6">
@@ -130,7 +130,7 @@ export default function Users() {
                       <motion.td
                         className="text-start px-5 py-3.5 font-normal text-[14.5px] text-gray-800 group-hover:text-blue-500 whitespace-nowrap"
                       >
-                        {user.company.name}
+                        {user?.company?.name}
                       </motion.td>
                     </motion.tr>
                   ))}
@@ -162,11 +162,11 @@ export default function Users() {
             </p>
             <p>
               <span className="font-medium">Company:</span>{' '}
-              {selectedUser.company.name}
+              {selectedUser?.company?.name}
             </p>
             <p>
               <span className="font-medium">Address:</span>{' '}
-              {selectedUser.address.street}, {selectedUser.address.city}
+              {selectedUser?.address?.street}, {selectedUser?.address?.city}
             </p>
           </div>
         )}

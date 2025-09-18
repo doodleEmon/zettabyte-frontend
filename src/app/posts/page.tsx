@@ -5,6 +5,7 @@ import useFetch from '../../hooks/useFetch'
 import Card from '../../components/Card'
 import { motion, AnimatePresence } from 'framer-motion'
 import LoadingSpinner from '../../components/LoadingSpinner'
+import { Post } from '@/utils/types'
 
 export default function PostsPage() {
   const [simulateError, setSimulateError] = useState(false)
@@ -13,7 +14,7 @@ export default function PostsPage() {
     ? 'https://jsonplaceholder.typicode.com/invalid-posts'
     : 'https://jsonplaceholder.typicode.com/posts'
 
-  const { data: posts, loading, error, refetch } = useFetch<any[]>(endpoint)
+const { data: posts, loading, error, refetch } = useFetch<Post[]>(endpoint)
 
   const container = {
     hidden: { opacity: 1 },
