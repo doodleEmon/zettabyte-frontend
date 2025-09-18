@@ -5,6 +5,7 @@ import useFetch from '../../hooks/useFetch'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import Modal from '@/components/Modal'
 import Link from 'next/link'
+import { AnimatePresence, motion } from 'framer-motion'
 
 export default function Users() {
   const endpoint = `https://jsonplaceholder.typicode.com/users`;
@@ -17,7 +18,7 @@ export default function Users() {
       <h2 className="text-3xl font-bold"><span className='bg-gradient-to-r bg-clip-text text-transparent from-amber-500 to-sky-500'>Users</span></h2>
 
       {loading && (
-        <div className="flex items-center space-x-2 w-full">
+        <div className="flex items-center justify-center space-x-2 w-full h-[75vh]">
           <LoadingSpinner />
         </div>
       )}
@@ -29,41 +30,114 @@ export default function Users() {
       )}
 
       {!loading && !error && users && (
-        <div className="overflow-x-auto mt-4">
-          <table className="w-full border-collapse border border-slate-300">
-            <thead className="bg-slate-100">
-              <tr>
-                <th className="border border-slate-300 px-4 py-2 text-left">
-                  Name
-                </th>
-                <th className="border border-slate-300 px-4 py-2 text-left">
-                  Email
-                </th>
-                <th className="border border-slate-300 px-4 py-2 text-left">
-                  Company
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user) => (
-                <tr
-                  key={user.id}
-                  className="cursor-pointer hover:bg-slate-50"
-                  onClick={() => setSelectedUser(user)}
-                >
-                  <td className="border border-slate-300 px-4 py-2">
-                    {user.name}
-                  </td>
-                  <td className="border border-slate-300 px-4 py-2">
-                    {user.email}
-                  </td>
-                  <td className="border border-slate-300 px-4 py-2">
-                    {user.company.name}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="w-full mt-4 overflow-x-auto h-[75vh] overflow-y-scroll">
+          <AnimatePresence mode="wait">
+            {users.length === 0 ? (
+              <motion.div
+                key="no-data"
+                className="max-w-full text-center text-lg font-medium"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.15 }}
+              >
+                No data found!
+              </motion.div>
+            ) : (
+              <motion.table
+                key="table"
+                className="min-w-full border-collapse"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{
+                  duration: 0.4,
+                  ease: [0.4, 0.0, 0.2, 1] // Custom easing for smoother animation
+                }}
+              >
+                <thead>
+                  <motion.tr
+                    className="bg-gradient-to-r from-amber-200 to-sky-200"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.1, duration: 0.3 }}
+                  >
+                    {['Name', 'Email', 'Phone', 'Company'].map((header, index) => (
+                      <motion.th
+                        key={header}
+                        className="text-start px-5 py-4 font-semibold text-gray-600 uppercase text-sm whitespace-nowrap"
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          delay: 0.2 + (index * 0.1),
+                          duration: 0.3
+                        }}
+                      >
+                        {header}
+                      </motion.th>
+                    ))}
+                  </motion.tr>
+                </thead>
+                <tbody>
+                  {users.map((user, index) => (
+                    <motion.tr
+                      key={user.id}
+                      onClick={() => setSelectedUser(user)}
+                      className={`hover:bg-gradient-to-r hover:from-amber-200 hover:to-sky-200 group cursor-pointer transition-all duration-200 ${index !== users.length - 1
+                        ? "border-b border-b-gray-200"
+                        : ""
+                        }`}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{
+                        delay: 0.3 + (index * 0.1),
+                        duration: 0.2,
+                        ease: [0.2, 0.0, 0.2, 1]
+                      }}
+                      whileTap={{ scale: 0.99 }}
+                    >
+                      <motion.td
+                        className="text-start px-5 py-3.5 font-normal text-[14.5px] text-gray-800 group-hover:text-blue-500 whitespace-nowrap"
+                        whileHover={{ x: 2 }}
+                        transition={{ duration: 0.15 }}
+                      >
+                        <motion.p
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.4 + (index * 0.1) }}
+                        >
+                          {user.name}
+                        </motion.p>
+                        <motion.p
+                          className="text-gray-600"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.5 + (index * 0.1) }}
+                        >
+                          @{user.username}
+                        </motion.p>
+                      </motion.td>
+                      <motion.td
+                        className="text-start px-5 py-3.5 font-normal text-[14.5px] text-gray-800 group-hover:text-blue-500 whitespace-nowrap"
+                      >
+                        {user.email}
+                      </motion.td>
+                      <motion.td
+                        className="text-start px-5 py-3.5 font-normal text-[14.5px] text-gray-800 group-hover:text-blue-500 whitespace-nowrap"
+                      >
+                        {user.phone}
+                      </motion.td>
+                      <motion.td
+                        className="text-start px-5 py-3.5 font-normal text-[14.5px] text-gray-800 group-hover:text-blue-500 whitespace-nowrap"
+                      >
+                        {user.company.name}
+                      </motion.td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </motion.table>
+            )}
+          </AnimatePresence>
         </div>
       )}
 

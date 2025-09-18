@@ -51,7 +51,7 @@ export default function Sidebar() {
                 onClick={() => setOpen(!open)}
                 className={`absolute bottom-3 ${open ? "right-2" : "right-3"} size-10 flex items-center justify-center bg-slate-700 text-slate-100 rounded-full shadow-md hover:bg-slate-500 cursor-pointer`}
             >
-                {open ? <BiChevronLeft size={18} /> : <BiChevronRight size={18} />}
+                {open ? <BiChevronLeft size={24} /> : <BiChevronRight size={24} />}
             </button>
         </motion.aside>
     )

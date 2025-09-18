@@ -49,7 +49,7 @@ export default function PostsPage() {
       </div>
 
       {loading && (
-        <div className="flex items-center space-x-2 w-full h-full">
+        <div className="flex items-center justify-center space-x-2 w-full h-[75vh]">
           <LoadingSpinner />
         </div>
       )}

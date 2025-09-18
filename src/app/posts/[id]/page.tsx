@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import React from 'react'
 import { BiChevronLeft } from 'react-icons/bi';
 import { motion } from 'framer-motion'
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 export default function SinglePost() {
   const { id } = useParams();
@@ -27,14 +28,21 @@ export default function SinglePost() {
       >
         <BiChevronLeft size={18} /> Back
       </motion.button>
+
       <span className="text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent from-amber-500 to-sky-500">Details page</span>
 
-      <div className="bg-slate-200 rounded-lg shadow-xl p-6 space-y-3 mt-4">
-        <p className="text-sm text-gray-500">ID: {post?.id}</p>
-        <p className="text-sm text-gray-500">User ID: {post?.userId}</p>
-        <h1 className="text-xl font-semibold capitalize">{post?.title}</h1>
-        <p className="text-gray-700 leading-relaxed">{post?.body}</p>
-      </div>
+      {loading ? (
+        <div className="flex items-center justify-center w-full h-[300px]">
+          <LoadingSpinner />
+        </div>
+      ) : (
+        <div className="bg-slate-200 rounded-lg shadow-xl p-6 space-y-3 mt-4">
+          <p className="text-sm text-gray-500">ID: {post?.id}</p>
+          <p className="text-sm text-gray-500">User ID: {post?.userId}</p>
+          <h1 className="text-xl font-semibold capitalize">{post?.title}</h1>
+          <p className="text-gray-700 leading-relaxed">{post?.body}</p>
+        </div>
+      )}
     </motion.div>
   )
 }
