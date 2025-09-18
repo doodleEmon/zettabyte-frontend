@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
-import { usePathname } from 'next/navigation'
+import { useParams, usePathname } from 'next/navigation'
 import { activeLinkClasses, linkClasses } from '@/utils/customStyles'
 import { useState } from 'react'
 import { MdDashboard } from 'react-icons/md'
@@ -12,6 +12,7 @@ import { FaSignsPost, FaUsers } from 'react-icons/fa6'
 export default function Sidebar() {
     const [open, setOpen] = useState<Boolean>(true);
     const pathname = usePathname();
+    const { id } = useParams();
 
     return (
         <motion.aside
@@ -33,7 +34,7 @@ export default function Sidebar() {
 
                 <Link
                     href="/posts"
-                    className={`${linkClasses} ${pathname === '/posts' ? activeLinkClasses : 'bg-slate-700'}`}
+                    className={`${linkClasses} ${pathname === '/posts' || pathname === `/posts/${id}` ? activeLinkClasses : 'bg-slate-700'}`}
                 >
                     <span className="relative z-10">{open ? <span className=' flex items-center gap-x-2'><FaSignsPost /> Posts</span> : <FaSignsPost />}</span>
                 </Link>

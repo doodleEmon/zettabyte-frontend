@@ -15,13 +15,22 @@ export default function Home() {
       </motion.div>
 
       <section className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card title="Active Users">
+        <Card
+          description={""}
+          href={""}
+          title="Active Users">
           <div className="text-2xl font-bold">1,234</div>
         </Card>
-        <Card title="New Signups">
+        <Card
+          description={""}
+          href={""}
+          title="New Signups">
           <div className="text-2xl font-bold">56</div>
         </Card>
-        <Card title="Server Load">
+        <Card
+          description={""}
+          href={""}
+          title="Server Load">
           <motion.div
             className="h-6 rounded bg-slate-100 mt-2 overflow-hidden"
             initial={{ width: '0%' }}
