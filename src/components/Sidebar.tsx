@@ -21,10 +21,7 @@ export default function Sidebar() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className={`relative bg-slate-800 text-white h-screen transition-width overflow-hidden ${open ? "p-4" : "p-3"}`}
         >
-            <div className="px-3">
-                <Link href="/" className="text-2xl font-bold bg-gradient-to-r bg-clip-text text-transparent from-amber-500 to-sky-500">{open ? "Zetta Inc." : "Z"}</Link>
-            </div>
-            <nav className="mt-6 space-y-1">
+            <nav className="space-y-1">
                 <Link
                     href="/"
                     className={`${linkClasses} ${pathname === '/' ? activeLinkClasses : 'bg-slate-700'}`}
