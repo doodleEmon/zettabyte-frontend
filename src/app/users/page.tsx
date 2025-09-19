@@ -15,7 +15,7 @@ export default function Users() {
 
   return (
     <main className="p-6">
-      <h2 className="text-3xl font-bold"><span className='bg-gradient-to-r bg-clip-text text-transparent from-amber-500 to-sky-500'>Users</span></h2>
+      <h2 className="text-2xl lg:text-3xl font-bold"><span className='bg-gradient-to-r bg-clip-text text-transparent from-amber-500 to-sky-500'>Users</span></h2>
 
       {loading && (
         <div className="flex items-center justify-center space-x-2 w-full h-[75vh]">
@@ -30,12 +30,12 @@ export default function Users() {
       )}
 
       {!loading && !error && users && (
-        <div className="w-full mt-4 overflow-x-auto h-[75vh] overflow-y-scroll">
+        <div className="w-full overflow-x-auto mt-4 h-[75vh] overflow-y-scroll">
           <AnimatePresence mode="wait">
             {users.length === 0 ? (
               <motion.div
                 key="no-data"
-                className="max-w-full text-center text-lg font-medium"
+                className="min-w-full text-center text-lg font-medium"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -52,7 +52,7 @@ export default function Users() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{
                   duration: 0.4,
-                  ease: [0.4, 0.0, 0.2, 1] // Custom easing for smoother animation
+                  ease: [0.4, 0.0, 0.2, 1]
                 }}
               >
                 <thead>

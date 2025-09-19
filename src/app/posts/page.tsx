@@ -30,9 +30,9 @@ const { data: posts, loading, error, refetch } = useFetch<Post[]>(endpoint)
   }
 
   return (
-    <main className="px-6 pt-6 pb-2">
+    <main className="px-4 pt-4 pb-2">
       <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent from-amber-500 to-sky-500">Posts</h2>
+        <h2 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent from-amber-500 to-sky-500">Posts</h2>
         <div className="space-x-2">
           <button
             onClick={() => setSimulateError((s) => !s)}

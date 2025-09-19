@@ -30,7 +30,7 @@ export default function SinglePost() {
         <BiChevronLeft size={18} /> Back
       </motion.button>
 
-      <span className="text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent from-amber-500 to-sky-500">Details page</span>
+      <span className="text-2xl lg:text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent from-amber-500 to-sky-500">Details page</span>
 
       {loading ? (
         <div className="flex items-center justify-center w-full h-[300px]">

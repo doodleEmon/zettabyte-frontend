@@ -24,7 +24,7 @@ export default function Drawer({ isOpen, onClose }: DrawerProps) {
                     />
 
                     <motion.div
-                        className="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 p-4"
+                        className="fixed top-0 left-0 h-full w-64 md:w-80 bg-white shadow-lg z-50 p-4"
                         initial={{ x: -300 }}
                         animate={{ x: 0 }}
                         exit={{ x: -300 }}
