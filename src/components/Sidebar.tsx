@@ -19,7 +19,7 @@ export default function Sidebar() {
             initial={false}
             animate={{ width: open ? 220 : 64 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className={`relative bg-slate-800 text-white h-screen transition-width overflow-hidden ${open ? "p-4" : "p-3"}`}
+            className={`hidden lg:block relative bg-slate-800 text-white h-screen transition-width overflow-hidden ${open ? "p-4" : "p-3"}`}
         >
             <nav className="space-y-1">
                 <Link
@@ -46,7 +46,7 @@ export default function Sidebar() {
 
             <button
                 onClick={() => setOpen(!open)}
-                className={`absolute bottom-3 ${open ? "right-2" : "right-3"} size-10 flex items-center justify-center bg-slate-700 text-slate-100 rounded-full shadow-md hover:bg-slate-500 cursor-pointer`}
+                className={`absolute bottom-3 ${open ? "right-2" : "right-3"} size-10 hidden lg:flex items-center justify-center bg-slate-700 text-slate-100 rounded-full shadow-md hover:bg-slate-500 cursor-pointer`}
             >
                 {open ? <BiChevronLeft size={24} /> : <BiChevronRight size={24} />}
             </button>
